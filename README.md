@@ -1,32 +1,40 @@
-## Style Transfer as Data Augmentation for Breast Cancer Imaging
+# Style Transfer as Data Augmentation Technique for Breast Cancer Imaging Datasets
 
-### Abstract
-This repository contains the implementation and results of a study that attempts to use a style transfer algorithm for data augmentation in breast cancer imaging. The objective was to generate synthetic malignant breast cancer images by applying the style of malignant mammograms to benign mammograms, thereby addressing class imbalance in medical datasets. 
+## Abstract
+This project explores the application of a neural network-based style transfer algorithm as a data augmentation tool for breast cancer imaging datasets. The primary objective was to generate synthetic malignant breast cancer images by transferring the style from malignant mammography images onto benign ones. The quality of the generated images was found to be dependent on three key hyperparameters: the convolutional layer used for content loss, the optimization steps, and the content-to-style weight ratio. Anomaly detection via an autoencoder and a binary classifier were employed to evaluate the realism and classification of the generated images.
 
-### Methodology
-- **Style Transfer Algorithm**: A neural network-based style transfer algorithm was deployed to combine the style of malignant images with the content of benign images.
-- **Important Hyperparameters**: Content loss calculation layer, optimization steps count, and the content-to-style weight ratio.
-- **Anomaly Detection**: An autoencoder was used to separate realistic from non-realistic generated images.
-- **Binary Classifier**: A model with "benign" and "malignant" output classes used to predict labels for generated images.
+## Introduction
+The scarcity of expert-diagnosed medical images for training deep learning models in computer-aided diagnosis has led to the exploration of data augmentation techniques. This project aims to address the class imbalance in breast cancer datasets by generating synthetic malignant images using style transfer.
 
-### Key Findings
-- Generated images' quality is sensitive to specific hyperparameters, making it challenging to optimize and scale up the algorithm.
-- A subset of these images, originally labeled as benign, was identified as malignant post style transfer, suggesting successful data augmentation.
-- The anomaly detector was only partially successful in distinguishing non-realistic generated images.
+## Related Work
+Previous studies have utilized traditional image transformations and Generative Adversarial Networks (GANs) for data augmentation. However, GANs are computationally expensive and time-consuming. The neural style transfer algorithm presents a less demanding alternative.
 
-### Significance and Impact
-- **Addressing Data Imbalance**: This method could help mitigate class imbalance by generating more data for underrepresented classes.
-- **Potential in Healthcare**: Enhanced datasets can aid in developing more accurate diagnostic tools in regions with limited medical expertise.
-- **Scalability Issues**: Despite promising individual results, hyperparameter sensitivity poses significant challenges for large-scale synthetic data generation.
+## Methodology
+- **Style Transfer Fundamentals**: The algorithm uses a CNN optimized for object recognition to separate and recombine content and style from two images. The total loss is a weighted sum of content and style losses, with hyperparameters controlling the trade-off between content and style matching.
+- **Anomaly Detection Model**: A convolutional autoencoder architecture was used to identify realistic generated images by measuring reconstruction error.
+- **Classifier Model**: A binary classifier based on the Resnet-50 network architecture was trained to distinguish between benign and malignant mammography images.
 
-### Collaboration and Acknowledgments
-This work was carried out by Filip Ryzner and Bharat Khurana at MIT. Should you wish to expand upon this project, please cite the corresponding paper and acknowledge the dataset providers CBIS-DDSM and CMMD.
+## Automated Pipeline
+An automated pipeline was developed to generate and evaluate new images on a larger scale. It involves random sampling of image pairs, style transfer with baseline hyperparameters, anomaly detection, and classification.
 
-### Related Publications and Resources
-- Style Transfer Algorithm: [Gatys et. al (2016)](https://arxiv.org/abs/1508.06576)
-- CBIS-DDSM Dataset: [Lee et. al (2017)](https://www.nature.com/articles/sdata2017177)
-- CMMD Dataset: [Cui et. al (2021)](https://www.cancerimagingarchive.net/cmmd/)
+## Data
+The project utilized two certified datasets containing mammography screenings: the Curated Breast Imaging Subset of Digital Database for Screening Mammography (CBIS-DDSM) and the Chinese Mammography Database (CMMD).
 
-For a full explanation of methodologies, detailed results, training procedures for the anomaly detector and classifier, please refer to the original research paper and the contents of this repository.
+## Results
+- **Style Transfer Hyperparameter Exploration**: The study found that the generated images' realism is highly sensitive to the style transfer hyperparameters.
+- **Anomaly Detector and Classifier Training**: The anomaly detector was trained to identify outliers, and the classifier was trained to categorize images into benign and malignant classes.
+- **Style Transfer Generation Results**: The automated pipeline successfully generated images classified as malignant, but the process was highly sensitive to hyperparameter settings.
 
-This GitHub repository description provides a structured and concise summary of a research project exploring style transfer as a data augmentation technique in breast cancer imaging. It outlines the project's purpose, methodology, key findings, and their potential impact, creates an accessible entry point for other researchers and interested parties to understand and potentially contribute to the work. It is framed in a professional tone with citations and acknowledgment of collaborators, reflecting the academic nature of the research.
+## Discussion
+The project demonstrated that while it is possible to generate realistic-looking malignant breast cancer images, the process is highly sensitive to hyperparameters, and manual optimization is required for each image pair. The grayscale nature of the images and the lack of radiological expertise pose challenges in evaluating the algorithm's effectiveness.
+
+## Conclusion
+The neural style transfer algorithm shows potential as a data augmentation tool for generating synthetic malignant breast cancer images. However, the need for manual optimization of hyperparameters and expert validation of generated images limits its scalability and practical application.
+
+---
+
+**Collaborators**: Filip Ryzner and Bharat Khurana (MIT)
+**Funding**: Not specified
+**Related Publications**: References [1]-[33] as listed in the paper
+
+For more information, please refer to the full list of references provided in the paper.
