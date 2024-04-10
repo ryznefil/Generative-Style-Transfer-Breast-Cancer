@@ -25,6 +25,10 @@ The project utilized two certified datasets containing mammography screenings: t
 - **Anomaly Detector and Classifier Training**: The anomaly detector was trained to identify outliers, and the classifier was trained to categorize images into benign and malignant classes.
 - **Style Transfer Generation Results**: The automated pipeline successfully generated images classified as malignant, but the process was highly sensitive to hyperparameter settings.
 
+![alt text](https://github.com/ryznefil/Generative-Style-Transfer-Breast-Cancer/blob/main/modules/illustrative_figures/f_1.png)
+
+![alt text](https://github.com/ryznefil/Generative-Style-Transfer-Breast-Cancer/blob/main/modules/illustrative_figures/f_2.png)
+
 ## Discussion
 The project demonstrated that while it is possible to generate realistic-looking malignant breast cancer images, the process is highly sensitive to hyperparameters, and manual optimization is required for each image pair. The grayscale nature of the images and the lack of radiological expertise pose challenges in evaluating the algorithm's effectiveness.
 
